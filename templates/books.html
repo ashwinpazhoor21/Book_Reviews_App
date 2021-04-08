@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block body %}
+    <h1>All Books Matching Your Search</h1>
+
+    <table style="width:80%" class="table">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Year</th>
+        <th scope="col">ISBN</th>
+      </tr>
+      {% for book in books %}
+      <tr class="table-striped">
+        <td><a href="{{ url_for('book', book_id = book.id) }}">{{ book.title }}</a></td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.year }}</td>
+        <td>{{ book.isbn }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <p align="left">
+      <a href="{{ url_for('search') }}">New search</a>
+    </p>
+
+{% endblock %}
